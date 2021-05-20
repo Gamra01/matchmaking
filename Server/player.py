@@ -1,3 +1,5 @@
+from .game import Game
+
 
 class Player(object):
     def __init__(self, ip, name):
