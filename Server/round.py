@@ -7,7 +7,7 @@ from .chat import Chat
 class Round(object):
     def __init__(self, word, player_drawing, players):
         """
-        init object
+        initialization d'objet
         :param word: str
         :param player_drawing: Player
         :param players: Player[]

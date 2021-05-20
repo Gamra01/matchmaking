@@ -8,6 +8,9 @@ class Player(object):
         self.name = name
         self.score = 0
 
+    def set_game(self, game):
+        self.game = game
+        
     def update_score(self, x):
         self.score += x
 
