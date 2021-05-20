@@ -1,4 +1,3 @@
-
 from board import Board
 from round import Round
 import random
@@ -8,10 +7,7 @@ class Game(object):
 
     def __init__(self, id, players):
         """
-         commencez le jeu ! une fois que le seuil de joueur est atteint
-
-        :param id: int
-        :param players: Player[]
+        lancez le jeu! une fois que le seuil de joueur est atteint
         """
         self.id = id
         self.players = players
@@ -24,8 +20,7 @@ class Game(object):
 
     def start_new_round(self):
         """
-        Starts a new round with a new word
-        :return: None
+        Commence un nouveau tour avec un nouveau mot
         """
         try:
             round_word = self.get_word()
@@ -42,18 +37,15 @@ class Game(object):
 
     def player_guess(self, player, guess):
         """
-        Makes the player guess the word
-        :param player: Player
-        :param guess: str
-        :return: bool
+        Fait deviner le mot au joueur
+
         """
         return self.round.guess(player, guess)
 
     def player_disconnected(self, player):
         """
-        Call to clean up objects when player disconnects
-        :param player: Player
-        :raises: Exception()
+        
+        Appel pour nettoyer les objets lorsque le joueur se déconnecte
         """
 
         # todo check this
@@ -71,12 +63,16 @@ class Game(object):
             self.end_game()
 
     def get_player_scores(self):
+        """
+        donnez un dict des scores des joueurs..
+        """
         scores = {player.name:player.get_score() for player in self.players}
         return scores
 
     def skip(self):
         """
-        incrementer les parties skips
+        Incrémente les sauts de ronde, si les sauts sont supérieurs à
+        seuil, commence un nouveau tour.
         """
         if self.round:
             new_round = self.round.skip()
@@ -91,7 +87,7 @@ class Game(object):
 
     def round_ended(self):
         """
-            si le partie est finis appeler ça 
+        Si le tour se termine, appelez-le
         """
         self.round.chat.update_chat(f"Round {self.round_count} has ended.")
         self.start_new_round()
@@ -99,7 +95,7 @@ class Game(object):
 
     def update_board(self, x, y, color):
         """
-       appeler la methode update
+        appelle la méthode de mise à jour à bord.
         """
         if not self.board:
             raise Exception("No board created")
@@ -116,7 +112,7 @@ class Game(object):
 
     def get_word(self):
         """
-       donner un mot qui n'est pas utilisé 
+        donne un mot qui n'a pas encore été utilisé
         :return: str
         """
         with open("words.txt", "r") as f:
