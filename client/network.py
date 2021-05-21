@@ -20,7 +20,7 @@ class Network:
         except Exception as e:
             self.disconnect(e)
 
-            def send(self, data):
+    def send(self, data):
         try:
             self.client.send(json.dumps(data).encode())
 
